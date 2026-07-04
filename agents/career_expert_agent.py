@@ -11,45 +11,45 @@ class CareerExpertAgent:
 
     def ask_expert(self, domain, user_message, history):
         """
-        Seçilen kariyer alanına (domain) göre kullanıcıyla sohbet eder (OpenAI API).
+        Seçilen siber güvenlik alanına (domain) göre kullanıcıyla sohbet eder (OpenAI API).
         history: [{'role': 'user', 'content': '...'}, {'role': 'assistant', 'content': '...'}]
         """
         # System message based on domain
         system_prompts = {
-            "yazilim": (
-                "Sen kıdemli bir Yazılım Geliştirme Kariyer Uzmanısın. "
-                "Kullanıcıya yazılım dünyasındaki diller, teknolojiler, backend/frontend/mobil ayrımı, "
-                "kariyer yolları, iş bulma süreçleri ve teknik gelişim hakkında profesyonel, yapıcı ve "
+            "offensive": (
+                "Sen kıdemli bir Offensive Security (Sızma Testi ve Red Team) Kariyer Uzmanısın. "
+                "Kullanıcıya sızma testleri, exploit yazma, zafiyet tarama, web/mobil uygulama güvenliği, "
+                "ağ sızma testleri, OSCP/eWPT gibi sertifikalar ve teknik gelişim hakkında profesyonel, yapıcı ve "
                 "yol gösterici yanıtlar ver. Yanıtlarını çok uzun tutma, samimi ama profesyonel ol."
             ),
-            "tasarim": (
-                "Sen deneyimli bir Tasarım ve UX/UI Kariyer Uzmanısın. "
-                "Kullanıcının portfolyo oluşturma, tasarım araçları (Figma, Adobe vb.), grafik tasarım, "
-                "kullanıcı deneyimi araştırmaları ve arayüz tasarımı ile ilgili sorularını "
-                "görsel estetiği ve kullanıcı odaklılığı vurgulayarak yanıtla. Yanıtların ilham verici ve pratik olsun."
+            "defensive": (
+                "Sen deneyimli bir Defensive Security (SOC ve Blue Team) Kariyer Uzmanısın. "
+                "Kullanıcının SOC analistliği, SIEM entegrasyonu (Splunk, ELK vb.), tehdit avcılığı (Threat Hunting), "
+                "log analizi, güvenlik duvarı kuralları, olay müdahale (Incident Response) ve mavi takım sertifikaları (Sec+, CYSA+) "
+                "ile ilgili sorularını profesyonelce yanıtla. Yanıtların pratik ve sektörel uyumlu olsun."
             ),
-            "pazarlama": (
-                "Sen uzman bir Dijital Pazarlama ve Büyüme (Growth) Kariyer Uzmanısın. "
-                "Kullanıcıya SEO, SEM, sosyal medya yönetimi, veri analitiği, içerik pazarlaması, "
-                "reklam yönetimi ve marka stratejileri konularında sektörel trendlere uygun, "
-                "aksiyon alınabilir tavsiyeler ver."
+            "malware-forensics": (
+                "Sen uzman bir Zararlı Yazılım Analisti ve Adli Bilişim (Forensics) Kariyer Uzmanısın. "
+                "Kullanıcıya tersine mühendislik (IDA Pro, Ghidra), statik ve dinamik malware analizi, "
+                "disk/bellek imajı alma ve adli inceleme süreçleri, Volatility, FTK Imager gibi araçlar hakkında "
+                "aksiyon alınabilir teknik tavsiyeler ver."
             ),
-            "veri-yapayzeka": (
-                "Sen kıdemli bir Veri Bilimi ve Yapay Zeka Kariyer Uzmanısın. "
-                "Kullanıcıya veri analizi, makine öğrenmesi, derin öğrenme, büyük veri teknolojileri, "
-                "LLM'ler ve RAG mimarileri ile ilgili kariyer yolları, matematiksel altyapı ve proje fikirleri "
-                "sunarak rehberlik et. Teknik kavramları sadeleştirerek anlat."
+            "grc": (
+                "Sen kıdemli bir GRC (Yönetişim, Risk ve Uyum) Kariyer Uzmanısın. "
+                "Kullanıcıya bilgi güvenliği yönetim sistemleri (ISO 27001), KVKK/GDPR uyumluluğu, "
+                "siber güvenlik politikaları hazırlama, risk analizi metodolojileri (OCTAVE, NIST) ve "
+                "denetim süreçleri hakkında rehberlik et. Mevzuat ve kurumsal süreçlere uygun yanıtlar ver."
             ),
-            "girisimcilik-urun": (
-                "Sen tecrübeli bir Girişimcilik ve Ürün Yönetimi (Product Management) Kariyer Uzmanısın. "
-                "Kullanıcıya ürün geliştirme yaşam döngüsü, Scrum/Agile metodolojileri, MVP oluşturma, "
-                "pazar araştırması, pitch deck hazırlama ve iş modeli geliştirme konularında mentorluk yap."
+            "cloud-security": (
+                "Sen tecrübeli bir Bulut Güvenliği (Cloud Security) Kariyer Uzmanısın. "
+                "Kullanıcıya AWS/Azure/GCP üzerinde güvenli altyapı tasarımı, IAM (Kimlik Yönetimi) kuralları, "
+                "konteyner ve Kubernetes güvenliği, DevSecOps süreçleri ve bulut sertifikaları (CCSP, CCSK) konularında mentorluk yap."
             )
         }
         
         system_prompt = system_prompts.get(domain.lower(), (
-            "Sen profesyonel bir Kariyer Planlama Uzmanısın. Kullanıcının kariyer hedefleri, "
-            "iş arama stratejileri, özgeçmiş hazırlama ve mülakat teknikleri hakkındaki sorularını yanıtla."
+            "Sen profesyonel bir Siber Güvenlik Kariyer Planlama Uzmanısın. Kullanıcının siber güvenlik hedefleri, "
+            "iş arama stratejileri, sertifikasyonlar ve mülakat teknikleri hakkındaki sorularını yanıtla."
         ))
 
         if self.api_key:
@@ -112,52 +112,49 @@ class CareerExpertAgent:
 
     def _generate_mock_reply(self, domain, message):
         """
-        API anahtarı bulunmadığında çalışacak akıllı chatbot mock sistemi.
+        API anahtarı bulunmadığında çalışacak siber güvenlik chatbot mock sistemi.
         """
         msg_lower = message.lower()
         
-        # Yazılım Uzmanı Mock Cevapları
-        if domain == "yazilim":
+        # Offensive Security Mock Cevapları
+        if domain == "offensive":
             if "başla" in msg_lower or "nereden" in msg_lower or "yeni" in msg_lower:
-                return ("Yazılım dünyasına adım atarken öncelikle temel algoritmaları ve problem çözme mantığını kavramanı öneririm. "
-                        "Ardından bir alan seçmelisin. Web için HTML/CSS/JS ile frontend veya Python/Node.js ile backend; mobil için "
-                        "Flutter veya Swift/Kotlin gibi teknolojilere yönelebilirsin. Hangisi ilgini çekiyor?")
-            elif "dil" in msg_lower or "python" in msg_lower or "javascript" in msg_lower:
-                return ("Python veri bilimi, yapay zeka ve backend için harika bir dildir ve öğrenmesi kolaydır. JavaScript ise webin dilidir; "
-                        "tarayıcıda çalışan her şey Javascript ile yazılır. Eğer web arayüzleri seni heyecanlandırıyorsa JavaScript ile, "
-                        "arka plan sistemleri veya veriyle uğraşmak istiyorsan Python ile başlamak en doğrusudur.")
-            elif "iş" in msg_lower or "bul" in msg_lower or "mülakat" in msg_lower:
-                return ("Yazılımda iş bulmanın anahtarı güçlü bir GitHub portföyüdür. Sadece teorik öğrenmekle kalma, mutlaka kendi yaptığın "
-                        "özgün projeleri (örn. hava durumu uygulaması, to-do list, e-ticaret klonu) kodlayıp yayınla. Mülakatlarda ise algoritmalar "
-                        "ve iletişim becerilerin sorgulanacaktır.")
+                return ("Sızma testi (Pentest) dünyasına adım atarken öncelikle temel Ağ (Network) ve Linux yönetimi bilgilerini edinmelisiniz. "
+                        "Ardından web zafiyetleri (OWASP Top 10) üzerine çalışarak PortSwigger Web Security Academy gibi laboratuvarlarda pratik yapabilirsiniz. "
+                        "Temeliniz ne durumda, hiç Linux kullandınız mı?")
+            elif "sertifika" in msg_lower or "oscp" in msg_lower:
+                return ("Offensive Security alanında en değerli sertifika OSCP'dir (Offensive Security Certified Professional). Tamamen uygulamalı "
+                        "24 saatlik bir sınavdır. OSCP öncesinde eJPT veya eWPT gibi başlangıç seviyesi sertifikalarla kendinizi test edebilirsiniz.")
             else:
-                return ("Yazılım kariyerinde kendini geliştirmek için sürekli pratik yapmalısın. Sorduğun bu konu hakkında GitHub'da benzer "
-                        "açık kaynaklı projeleri inceleyebilir veya küçük denemelerle kendi çözümünü üretebilirsin. Başka hangi alanları merak ediyorsun?")
+                return ("Kırmızı Takım (Red Team) üyesi olmak, zafiyetleri istismar etmekten fazlasıdır. Ağ protokollerini, active directory mimarisini "
+                        "ve savunma sistemlerini (AV/EDR) atlatma tekniklerini de öğrenmelisiniz. Pratik yapmak için TryHackMe ve HackTheBox platformlarını öneririm.")
         
-        # Veri ve Yapay Zeka Mock Cevapları
-        elif domain == "veri-yapayzeka":
-            if "başla" in msg_lower or "öğren" in msg_lower:
-                return ("Yapay zeka ve veri bilimi için temel yol haritan: 1) Python programlama, 2) İstatistik ve Lineer Cebir, 3) Veri analizi "
-                        "(Pandas, NumPy), 4) Makine öğrenmesi (Scikit-Learn) ve 5) Derin öğrenme (PyTorch/TensorFlow) şeklindedir. Matematiksel temeli "
-                        "ihmal etmemek çok önemli. İlk olarak Python temellerini aldın mı?")
+        # Defensive Security Mock Cevapları
+        elif domain == "defensive":
+            if "başla" in msg_lower or "soc" in msg_lower:
+                return ("Mavi Takım (SOC Analisti) olmak için sistem günlüklerini (log) okumayı ve tehdit tespit araçlarını (SIEM) öğrenmelisiniz. "
+                        "Splunk veya ELK gibi SIEM araçlarının mantığını kavramak, Wireshark ile paket analizi yapmak harika bir başlangıçtır.")
             else:
-                return ("Yapay zeka alanı (özellikle LLM ve RAG sistemleri) çok hızlı gelişiyor. Teorik bilgileri öğrendikten sonra Hugging Face "
-                        "üzerindeki modelleri inceleyerek ve API'ler kullanarak kendi ufak chatbot veya veri analiz projelerini yapmanı öneririm.")
+                return ("Savunma tarafında kendinizi geliştirmek için siber saldırıların izlerini loglarda bulabilmelisiniz. Windows Event Log, Sysmon, "
+                        "Snort kuralları ve firewall loglarını analiz etme becerileri SOC analisti olmanın temel taşlarıdır.")
                 
-        # Tasarım Mock Cevapları
-        elif domain == "tasarim":
-            return ("UX/UI tasarımcısı olmak için öncelikle Figma aracında uzmanlaşmalısın. Ardından tasarım prensiplerini (renk teorisi, tipografi, "
-                    "hizalama, kontrast) öğrenmelisin. Behance ve Dribbble gibi platformlarda başarılı çalışmaları taklit ederek el becerini geliştirebilirsin.")
+        # Malware ve Forensics Mock Cevapları
+        elif domain == "malware-forensics":
+            return ("Zararlı yazılım analizi için x86 Assembly dili, işletim sistemi mimarileri ve C/C++ bilgisi önemlidir. Ghidra veya IDA Pro kullanarak "
+                    "tersine mühendislik yapabilir, Volatility aracıyla bellek analizine giriş yapabilirsiniz. TryHackMe'deki adli bilişim odaları faydalı olacaktır.")
             
-        # Pazarlama Mock Cevapları
-        elif domain == "pazarlama":
-            return ("Dijital pazarlamada başarılı olmak için SEO (Arama Motoru Optimizasyonu), Google Ads ve sosyal medya reklamcılığı alanlarında "
-                    "deneyim kazanmalısın. Kendi blog siteni açıp Google Analytics ile trafiği izlemek harika bir başlangıç projesi olabilir.")
+        # GRC Mock Cevapları
+        elif domain == "grc":
+            return ("Uyum ve risk yönetimi siber güvenliğin yönetimsel tarafıdır. ISO 27001 Bilgi Güvenliği Yönetim Sistemi, KVKK ve GDPR yasal mevzuatlarına "
+                    "hâkim olmalı, NIST siber güvenlik çerçevesi gibi standartları öğrenmelisiniz.")
             
-        # Girişimcilik Mock Cevapları
-        elif domain == "girisimcilik-urun":
-            return ("Ürün yöneticisi (Product Manager) olmak için kullanıcı ihtiyaçlarını iyi analiz edebilmeli, yazılımcılar ve tasarımcılar arasında "
-                    "köprü kurabilmelisiniz. Çevik (Agile/Scrum) çalışma metodolojilerini öğrenmek ve Jira/Trello gibi araçları deneyimlemek faydalı olacaktır.")
+        # Bulut Güvenliği Mock Cevapları
+        elif domain == "cloud-security":
+            return ("Bulut güvenliği için öncelikle temel AWS veya Azure bulut mimarilerini öğrenmelisiniz. Güvenli IAM politikaları yazma, "
+                    "Docker konteyner zafiyet taraması yapma ve Kubernetes güvenlik kurallarını (Network Policies) öğrenerek uzmanlaşabilirsiniz.")
 
         # Genel Mock Cevap
-        return f"Bu çok güzel bir soru! {domain} alanında başarılı olmak için en önemli şey istikrarlı çalışmaktır. Hedeflerini küçük parçalara bölerek ilerlemelisin. Sana bu konuda daha spesifik nasıl yardımcı olabilirim?"
+        return f"Siber güvenlikte {domain} alanında başarılı olmak için en önemli şey sürekli lab pratikleri yapmaktır. Bu alanda hangi konularda kendini geliştirmek istiyorsun?"
+
+# main.py içerisindeki yazım hatası importuna (CreerGoalAgent) uyumluluk sağlamak için alias ekliyoruz
+CreerGoalAgent = CareerExpertAgent

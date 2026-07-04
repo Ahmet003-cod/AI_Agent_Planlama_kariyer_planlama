@@ -1,30 +1,30 @@
-# 🧭 PathFinder AI: Akıllı Kariyer & Yol Haritası Planlama Platformu
+# 🛡️ CyberShield AI: Siber Güvenlik Kariyer & Uzmanlık Planlama Platformu
 
-PathFinder AI, kariyer hedeflerinizi belirlemenizi, adım adım dinamik yol haritaları oluşturmanızı, haftalık çalışma programlarınızı yönetmenizi ve fütüristik bir konsolda mesleğinizi simüle etmenizi sağlayan **OpenAI (`gpt-4o-mini`)** destekli bütünsel bir yapay zeka asistanı ekosistemidir.
+CyberShield AI, siber güvenlik alanında hedeflerinizi belirlemenizi, adım adım özelleştirilmiş siber yol haritaları oluşturmanızı, haftalık çalışma programlarınızı yönetmenizi ve fütüristik bir terminal arayüzünde siber operasyonları simüle etmenizi sağlayan **OpenAI (`gpt-4o-mini`)** destekli bütünsel bir yapay zeka asistanı ekosistemidir.
 
 ---
 
-## 🚀 Öne Çıkan Özellikler
+## 🚀 Öne Çıkan Siber Özellikler
 
-### 1. Dinamik Yol Haritası (Roadmap)
-* Girdiğiniz kariyer hedefine (Örn: *Siber Güvenlik Uzmanı*, *AI Engineer*) göre yapay zeka adım adım (en az 5 aşama) bir yol planı çıkarır.
+### 1. Siber Güvenlik Yol Haritası (Roadmap)
+* Girdiğiniz uzmanlık rolüne (Örn: *Sızma Testi Uzmanı (Pentester)*, *SOC Analisti (Blue Team)*, *Zararlı Yazılım Analisti*) göre yapay zeka adım adım (en az 5 aşama) bir yol planı çıkarır.
 * Her adımın altında detaylı teorik/pratik yapılacaklar listesi (checklist) sunulur.
 * Her adıma özel **resmi dokümantasyon linkleri** ve YouTube üzerinden canlı taranıp bulunan **doğrudan video eğitim bağlantıları** enjekte edilir.
 
-### 2. Kariyer Simülasyon Kapsülü (HUD Console)
-* Mesleğinizin günlük yaşantısını deneyimleyebileceğiniz fütüristik bir terminal simülatörü.
-* OpenAI tarafından üretilen mesleki operasyon adımları, **15 saniyelik dairesel geri sayım** eşliğinde daktilo efektiyle ekrana akar.
-* Simülasyon bittiğinde parıltılı efektlerle süslenmiş bir **Kariyer Başarı Sertifikası ve Rozeti** takdim edilir.
+### 2. Siber Operasyon Simülatörü (SOC HUD Console)
+* Seçtiğiniz uzmanlık rolünün günlük operasyonlarını deneyimleyebileceğiniz fütüristik bir terminal simülatörü.
+* OpenAI tarafından üretilen siber operasyon adımları, **15 saniyelik dairesel geri sayım** eşliğinde daktilo efektiyle ekrana akar.
+* Simülasyon bittiğinde parıltılı efektlerle süslenmiş bir **Siber Güvenlik Başarı Rozeti ve Sertifikası** takdim edilir.
 
-### 3. Haftalık Çalışma Takvimi & Hatırlatıcılar
+### 3. Çalışma Takvimi & Hatırlatıcılar (CRUD)
 * Yol haritasındaki adımları günlere bölen haftalık çalışma programları.
 * **CRUD Desteği:** Görevleri düzenleyebilir, yeni özel görev ekleyebilir veya silebilirsiniz.
 * **Alarm / Hatırlatıcı Kurma:** Görevlerinize tarih/saat belirleyerek alarm kurabilirsiniz. Zamanı geldiğinde sesli/görsel slide-in toast bildirimleri ve tarayıcı yerel bildirimleri alırsınız.
 
-### 4. Çoklu Kariyer Uzmanı Ajanları (AI Career Experts)
-* 5 farklı uzmanlık alanına (Yazılım, AI & Veri, Tasarım, Pazarlama, Girişimcilik) atanmış yapay zeka mentörleriyle canlı sohbet odaları.
+### 4. Siber Güvenlik Ajanları (AI Security Experts)
+* 5 farklı uzmanlık alanına (Offensive Security, Defensive Security, Zararlı Yazılım & Adli Bilişim, GRC, Bulut Güvenliği) atanmış yapay zeka mentörleriyle canlı sohbet odaları.
 
-### 5. Canlı Kaynak Önerileri (Deep Links)
+### 5. Canlı Siber Kaynak Önerileri (Deep Links)
 * Seçtiğiniz konuya yönelik Udemy, YouTube ve GitHub üzerindeki doğrudan ve çalışan en güncel eğitim kaynakları OpenAI tarafından canlı olarak derlenerek listelenir.
 
 ---
