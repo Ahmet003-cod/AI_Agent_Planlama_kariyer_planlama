@@ -1,89 +1,76 @@
-# 🧭 PathFinder AI: Siber Güvenlik Kariyer & Uzmanlık Planlama Platformu
+# 🧭 PathFinder AI: Siber Güvenlik Kariyer Planlayıcı & Yol Haritası Asistanı
 
-PathFinder AI, siber güvenlik alanında hedeflerinizi belirlemenizi, adım adım özelleştirilmiş siber yol haritaları oluşturmanızı, haftalık çalışma programlarınızı yönetmenizi ve fütüristik bir terminal arayüzünde siber operasyonları simüle etmenizi sağlayan **OpenAI (`gpt-4o-mini`)** destekli bütünsel bir yapay zeka asistanı ekosistemidir.
-
----
-
-## 🔒 Güvenlik Vurgusu (Safe & Secure Codebase)
-
-Bu proje siber güvenlik ilkeleri göz önünde bulundurularak, tamamen güvenli ve zafiyetsiz kod standartlarıyla geliştirilmiştir:
-1. **Veri Sızıntısı Koruması (Zero-Leakage):** Hassas kimlik doğrulama anahtarları (OpenAI API anahtarı) kod içerisinde barındırılmaz, `.gitignore` ve `.env` mekanizmasıyla dışarıda tutulur.
-2. **Yerel Bellek Güvenliği (Local Privacy):** Kullanıcı ilerlemeleri ve sohbet geçmişleri harici bir veritabanına veya üçüncü taraf sunuculara gönderilmeden tamamen yerel bilgisayarınızda (`data/` dizini altında) izole şekilde saklanır.
-3. **Güvenli Dış Bağlantılar (Strict Safe Links):** Eğitim ve kaynak linkleri için yönlendirme (open-redirect) sayfaları kullanılmaz; sadece doğrudan hedefe giden, doğrulanmış ve güvenli protokole (`https`) sahip bağlantılar üretilir.
-4. **Minimum Bağımlılık (Low Attack Surface):** Harici gereksiz SDK ve kütüphane kurulumlarından kaçınılarak uygulamanın saldırı yüzeyi (attack surface) minimum seviyede tutulmuştur.
+PathFinder AI; siber güvenlik alanında hedeflerinizi belirlemenizi, bu hedeflere yönelik yapay zeka destekli ders programları çıkarmanızı, AI mentörlerle sohbet etmenizi ve 15 saniyelik fütüristik bir log terminalinde mesleki operasyonları görsel olarak deneyimlemenizi sağlayan Flask tabanlı bir kariyer planlama uygulamasıdır.
 
 ---
 
-## 🚀 Öne Çıkan Siber Özellikler
+## 🔒 Güvenlik Vurgusu (Code Security)
 
-### 1. Siber Güvenlik Yol Haritası (Roadmap)
-* Girdiğiniz uzmanlık rolüne (Örn: *Sızma Testi Uzmanı (Pentester)*, *SOC Analisti (Blue Team)*, *Zararlı Yazılım Analisti*) göre yapay zeka adım adım (en az 5 aşama) bir yol planı çıkarır.
-* Her adımın altında detaylı yapılacaklar listesi (checklist) sunulur.
-* Her adıma özel **resmi dokümantasyon linkleri** ve YouTube üzerinden canlı taranıp bulunan **doğrudan video eğitim bağlantıları** enjekte edilir.
+Bu proje güvenli kodlama standartları ve veri gizliliği esas alınarak geliştirilmiştir:
+1. **API Anahtarı Güvenliği:** OpenAI API anahtarınız kesinlikle kod içerisinde barındırılmaz. `.gitignore` ve `.env` mekanizması kullanılarak kaynak koddan tamamen izole tutulur.
+2. **Yerel Veri Depolama (Local Privacy):** Yol haritaları, tamamlanma durumları, haftalık ders planları ve chat geçmişleri hiçbir harici bulut sunucusuna gönderilmez; tamamen kullanıcının kendi yerel bilgisayarında (`data/user_profile.json` altında) saklanır.
+3. **Doğrudan Güvenli Bağlantılar (Strict Links):** Kaynak önerilerinde open-redirect (açık yönlendirme) açığı oluşturabilecek arama motoru yönlendirme linkleri temizlenmiştir. Tüm video ve dokümanlar doğrudan `https` protokolüne sahip resmi adreslere gider.
 
-### 2. Siber Operasyon Simülatörü (SOC HUD Console)
-* Seçtiğiniz uzmanlık rolünün günlük operasyonlarını deneyimleyebileceğiniz fütüristik bir terminal simülatörü.
-* OpenAI tarafından üretilen siber operasyon adımları, **15 saniyelik dairesel geri sayım** eşliğinde daktilo efektiyle ekrana akar.
-* Simülasyon bittiğinde parıltılı efektlerle süslenmiş bir **Siber Güvenlik Başarı Rozeti ve Sertifikası** takdim edilir.
+---
 
-### 3. Çalışma Takvimi & Hatırlatıcılar (CRUD)
-* Yol haritasındaki adımları günlere bölen haftalık çalışma programları.
-* **CRUD Desteği:** Görevleri düzenleyebilir, yeni özel görev ekleyebilir veya silebilirsiniz.
-* **Alarm / Hatırlatıcı Kurma:** Görevlerinize tarih/saat belirleyerek alarm kurabilirsiniz. Zamanı geldiğinde sesli/görsel slide-in toast bildirimleri ve tarayıcı yerel bildirimleri alırsınız.
+## ⚙️ Projede Bulunan Özellikler (Mevcut Fonksiyonlar)
 
-### 4. Siber Güvenlik Ajanları (AI Security Experts)
-* 5 farklı uzmanlık alanına (Offensive Security, Defensive Security, Zararlı Yazılım & Adli Bilişim, GRC, Bulut Güvenliği) atanmış yapay zeka mentörleriyle canlı sohbet odaları.
+Uygulama içerisinde aktif olarak çalışan modüller şunlardır:
 
-### 5. Canlı Siber Kaynak Önerileri (Deep Links)
-* Seçtiğiniz konuya yönelik Udemy, YouTube ve GitHub üzerindeki doğrudan ve çalışan en güncel eğitim kaynakları OpenAI tarafından canlı olarak derlenerek listelenir.
+### 1. Yol Haritası Planlayıcı (Roadmap)
+* Kullanıcının girdiği siber güvenlik rolüne göre OpenAI (`gpt-4o-mini`) ile 5 adımlı bir görsel yol haritası hazırlar.
+* Her adımın altında tamamlanabilir görevlerden oluşan bir checklist yer alır.
+* Her adıma özel **resmi dokümantasyon** bağlantıları ve yerel YouTube arama motoru modülümüzle çekilen **doğrudan video ders linkleri** enjekte edilir.
+
+### 2. Haftalık Çalışma Takvimi (Scheduler & CRUD)
+* Yol haritasındaki adımları gün bazlı saat planlamasına böler.
+* **Tam CRUD Yeteneği:** Takvimdeki görevlerin isimlerini elle değiştirebilir, yeni görevler ekleyebilir veya silebilirsiniz.
+* **Hafta Ekleme:** Mevcut çalışma bittiğinde yapay zeka ile sonraki haftayı planlayabilirsiniz.
+
+### 3. Alarm ve Hatırlatıcı Bildirimleri
+* Takvimdeki herhangi bir göreve özel tarih/saat seçerek hatırlatıcı kurabilirsiniz.
+* Arka planda çalışan zaman kontrolcüsü sayesinde alarm vakti geldiğinde sesli/görsel slide-in toast uyarısı ve tarayıcı yerel bildirimi alırsınız.
+
+### 4. Siber Güvenlik Chatbot Ajanları (AI Mentors)
+* Siber güvenliğin 5 alt disiplinine özel tanımlanmış yapay zeka mentörleriyle sohbet arayüzü:
+  * **Offensive Security** (Pentest & Red Team Uzmanı)
+  * **Defensive Security** (SOC & Blue Team Uzmanı)
+  * **Zararlı Yazılım & Adli Bilişim** (Malware & Forensics Uzmanı)
+  * **GRC** (Uyum & Risk Yönetimi Uzmanı)
+  * **Bulut Güvenliği** (Cloud Security Uzmanı)
+
+### 5. Canlı Eğitim Önerileri (Deep Suggestions)
+* Yol haritasında seçilen konu başlığına özel olarak Udemy kursları, YouTube videoları ve GitHub örnek depolarına giden doğrudan 6 adet eğitim linkini listeler.
+
+### 6. Operasyon Simülasyon Kapsülü (Console HUD)
+* Gelecekteki mesleğinizin bir gününü temsil eden operasyon loglarını daktilo efektiyle ekrana yazdıran, 15 saniyelik görsel dairesel geri sayım halkası içeren motivasyon podudur. 15 saniye sonunda başarı sertifikası ve rozeti ekrana gelir.
 
 ---
 
 ## 🛠️ Kurulum ve Çalıştırma
 
-### 1. Gereksinimler
-* Bilgisayarınızda Python 3.8 veya üzeri bir sürümün yüklü ve çevre değişkenlerine (PATH) ekli olduğundan emin olun.
+### 1. Otomatik Kurulum (Windows)
+Windows işletim sistemlerinde klasördeki [run.bat](run.bat) dosyasına çift tıklayarak sistemi başlatabilirsiniz. Script sırasıyla:
+1. Gerekli sanal ortamı (`venv`) hazırlar.
+2. Bağımlılıkları (`requriments.txt`) yükler.
+3. `.env` dosyası eksikse `.env_example` dosyasından otomatik kopyalar.
+4. Sunucuyu `http://127.0.0.1:5000` adresinde başlatır.
 
-### 2. Kolay Başlatıcı Scripti (Önerilen)
-Windows kullanıyorsanız, proje klasöründeki [run.bat](run.bat) dosyasına çift tıklayarak sistemi otomatik başlatabilirsiniz. Script sırasıyla şunları yapacaktır:
-1. Gerekli sanal ortamı (`venv`) oluşturur ve aktif eder.
-2. Tüm Python kütüphanelerini (`requriments.txt`) otomatik yükler.
-3. `.env` dosyası eksikse `.env_example` şablonunu kopyalar.
-4. Sunucuyu ayağa kaldırarak tarayıcınızda açılmaya hazır hale getirir.
-
-### 3. Manuel Kurulum
-1. Sanal ortam oluşturun ve aktif edin:
+### 2. Manuel Kurulum
+1. Sanal ortam oluşturup aktif edin:
    ```bash
    python -m venv venv
-   source venv/bin/activate  # Windows için: venv\Scripts\activate
+   venv\Scripts\activate
    ```
-2. Bağımlılıkları yükleyin:
+2. Bağımlılıkları kurun:
    ```bash
    pip install -r requriments.txt
    ```
-3. `.env_example` dosyasını `.env` olarak kopyalayıp içerisine kendi **OpenAI API Key** anahtarınızı ekleyin:
+3. `.env` dosyasını oluşturup API anahtarınızı ekleyin:
    ```env
-   OPENAI_API_KEY=sk-proj-your-api-key-here
+   OPENAI_API_KEY=sk-proj-your-key
    ```
-4. Flask uygulamasını çalıştırın:
+4. Uygulamayı çalıştırın:
    ```bash
    python main.py
    ```
-5. Tarayıcınızdan açın: `http://127.0.0.1:5000`
-
----
-
-## 📂 Proje Yapısı
-
-```text
-├── agents/                  # Yapay zeka ajanları (yol haritası, takvim planlama, kariyer uzmanı)
-├── tools/                   # YouTube arama, kaynak öneri ve web arama araçları
-├── memorys/                 # Kullanıcı profil ve ilerleme durum belleği
-├── templates/               # HTML arayüz tasarımları
-├── static/                  # CSS stilleri ve JS uygulama mantığı
-├── main.py                  # Flask backend API sunucusu
-├── .env_example             # Çevre değişkenleri şablonu
-├── .gitignore               # Git dışı bırakma listesi
-├── run.bat                  # Kolay çalıştırma scripti
-└── README.md                # Proje tanıtım dosyası
-```
