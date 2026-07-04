@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
         active_step_for_scheduler: "",
         active_step_for_suggestions: "",
         active_step_for_details: null,
-        active_chat_domain: "offensive",
+        active_chat_domain: "yazilim",
         active_week: 1,
         edit_mode: false
     };
@@ -122,25 +122,25 @@ document.addEventListener("DOMContentLoaded", () => {
         const subtitleEl = document.getElementById("page-subtitle");
         
         if (hash === "#dashboard") {
-            titleEl.textContent = "Siber Güvenlik Kariyer Paneli";
-            subtitleEl.textContent = "Yapay zeka destekli siber güvenlik yolculuğunuzu başlatın.";
+            titleEl.textContent = "Kariyer Planlama Paneli";
+            subtitleEl.textContent = "Yapay zeka destekli kariyer yolculuğunuzu başlatın.";
         } else if (hash === "#chat") {
-            titleEl.textContent = "Siber Güvenlik Uzman Sohbeti";
-            subtitleEl.textContent = "Kırmızı, Mavi veya Adli Bilişim siber güvenlik ajanlarıyla konuşun.";
+            titleEl.textContent = "Kariyer Uzmanı Sohbeti";
+            subtitleEl.textContent = "Farklı uzmanlık alanlarındaki yapay zeka rehberleriyle konuşun.";
         } else if (hash === "#roadmap") {
-            titleEl.textContent = "Uzmanlık Yol Haritası";
-            subtitleEl.textContent = "Hedeflerinize ulaşmak için siber güvenlikte izlemeniz gereken adımlar.";
+            titleEl.textContent = "Kariyer Yol Haritası";
+            subtitleEl.textContent = "Hedeflerinize ulaşmak için izlemeniz gereken adımlar.";
         } else if (hash === "#scheduler") {
-            titleEl.textContent = "Çalışma Programı";
+            titleEl.textContent = "Haftalık Çalışma Programı";
             subtitleEl.textContent = "Adım bazında planlanmış haftalık görevleriniz.";
         } else if (hash === "#suggestions") {
             titleEl.textContent = "Kaynak Önerileri";
-            subtitleEl.textContent = "Seçtiğiniz siber güvenlik adımına göre toplanan kaynaklar.";
+            subtitleEl.textContent = "Seçilen adım başlığına göre internet arama motorundan eş zamanlı derlenen kaynaklar.";
             if (state.active_step_for_scheduler) {
                 loadSuggestions(state.active_step_for_scheduler);
             }
         } else if (hash === "#simulation") {
-            titleEl.textContent = "Siber Simülatör";
+            titleEl.textContent = "Kariyer Simülasyonu";
             subtitleEl.textContent = "15 saniyelik motivasyon kapsülüyle geleceğini deneyimle.";
             initSimulationUI();
         }
@@ -183,7 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     if ("Notification" in window && Notification.permission === "granted") {
                         try {
-                            new Notification("CyberShield AI Alarmı!", {
+                            new Notification("PathFinder AI Alarmı!", {
                                 body: `${reminder.text}\n\nNot: ${reminder.message}`,
                                 icon: "/static/favicon.ico"
                             });
@@ -266,7 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 taskIndex: activeReminderTask.taskIndex,
                 text: activeReminderTask.text,
                 time: datetimeVal,
-                message: msgVal || "Siber çalışma vakti geldi!",
+                message: msgVal || "Çalışma vakti geldi!",
                 status: "pending"
             };
 
@@ -286,7 +286,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (res.ok) {
                 elements.apiStatusBadge.classList.add("online");
                 elements.apiStatusBadge.classList.remove("offline");
-                elements.apiStatusText.textContent = "Ajan Bağlantısı Aktif";
+                elements.apiStatusText.textContent = "Çevrimiçi";
             }
         } catch {
             elements.apiStatusBadge.classList.add("offline");
@@ -297,7 +297,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Load User Profile
     async function loadUserProfile() {
-        showLoading("Siber profil yükleniyor...");
+        showLoading("Profil yükleniyor...");
         try {
             const response = await fetch("/api/profile");
             if (response.ok) {
@@ -384,11 +384,11 @@ document.addEventListener("DOMContentLoaded", () => {
     elements.btnGenerateRoadmap.addEventListener("click", async () => {
         const goal = elements.careerInput.value.trim();
         if (!goal) {
-            alert("Lütfen bir siber güvenlik hedefi girin!");
+            alert("Lütfen bir kariyer hedefi girin!");
             return;
         }
 
-        showLoading("Siber Yol Haritası Çıkarılıyor...");
+        showLoading("Yol Haritası Oluşturuluyor...");
         try {
             const response = await fetch("/api/career-goal", {
                 method: "POST",
@@ -458,9 +458,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 Baslik: stepObj,
                 Aciklama: "Bu adım hakkında detaylı bilgi almak için tıklayın.",
                 Gorevler: [
-                    "Temel siber kavramları ve standartları araştırın.",
-                    "Uygulamalı siber laboratuvar (lab) egzersizleri yapın.",
-                    "Konuyla ilgili teknik bir senaryo çözün."
+                    "Temel kavramları ve terminolojiyi araştırın.",
+                    "Uygulamalı egzersizler ve pratikler yapın.",
+                    "Konuyla ilgili ufak bir proje geliştirin."
                 ],
                 Kaynaklar: []
             } : stepObj;
@@ -508,7 +508,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 Gorevler: [
                     "Temel kavramları ve terminolojiyi araştırın.",
                     "Uygulamalı egzersizler ve pratikler yapın.",
-                    "Konuyla ilgili ufak bir senaryo çözün."
+                    "Konuyla ilgili ufak bir proje geliştirin."
                 ],
                 Kaynaklar: []
             } : defaultStepObj;
@@ -647,11 +647,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- CHAT EXPERT SECTION ---
     const welcomeMessages = {
-        "offensive": "Merhaba! Ben Offensive Security (Kırmızı Takım) uzmanınızım. Sızma testleri, exploit geliştirme, web güvenliği ve siber saldırı simülasyonları hakkında dilediğinizi sorabilirsiniz.",
-        "defensive": "Selamlar! Ben Defensive Security (Mavi Takım) uzmanınızım. SOC analizi, SIEM altyapısı, log analizi ve olay müdahale süreçleri hakkında sorularınızı yanıtlamak için buradayım.",
-        "malware-forensics": "Merhaba! Ben Zararlı Yazılım Analizi ve Adli Bilişim uzmanınızım. Tersine mühendislik, statik/dinamik kod analizi, disk ve bellek analizi konularında rehberlik edebilirim.",
-        "grc": "Merhaba! Ben GRC (Uyum ve Siber Risk) uzmanınızım. ISO 27001, KVKK/GDPR uyumluluğu, siber güvenlik politikaları ve risk analizi süreçleri hakkında görüşebiliriz.",
-        "cloud-security": "Selamlar! Bulut Güvenliği uzmanınız burada. AWS, Azure, Google Cloud platformlarında güvenli mimari kurulumu ve konteyner (Docker/Kubernetes) güvenliği hakkında konuşabiliriz."
+        "yazilim": "Merhaba! Ben Yazılım Geliştirme Kariyer Uzmanınızım. Kodlama dilleri, frontend/backend geliştirme, kariyer hedefleri ve mülakatlar hakkında bana dilediğini sorabilirsin.",
+        "veri-yapayzeka": "Selamlar! Ben Yapay Zeka ve Veri Bilimi Kariyer Uzmanıyım. Makine öğrenmesi algoritmaları, derin öğrenme, Python kütüphaneleri ve yapay zeka kariyer yolları hakkında sorularını bekliyorum.",
+        "tasarim": "Merhaba! Ben Tasarım ve UX/UI Kariyer Uzmanıyım. Figma ipuçları, arayüz tasarım prensipleri ve şık portfolyo oluşturma konularında sana rehberlik edebilirim.",
+        "pazarlama": "Merhaba! Dijital Pazarlama ve Büyüme Uzmanınız burada. SEO, Google/Facebook reklamları ve büyüme taktikleri hakkında sorularını sorabilirsin.",
+        "girisimcilik-urun": "Merhabalar! Ben Girişimcilik ve Ürün Yönetimi Uzmanıyım. MVP oluşturma, startup geliştirme ve Agile/Scrum süreçleri konusunda konuşabiliriz."
     };
 
     elements.expertCards.forEach(card => {
@@ -671,7 +671,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const history = state.chat_histories[domain] || [];
         
         if (history.length === 0) {
-            const welcomeMsg = welcomeMessages[domain] || "Merhaba! Siber güvenlik kariyerinde sana nasıl yardımcı olabilirim?";
+            const welcomeMsg = welcomeMessages[domain] || "Merhaba! Sana kariyerinde nasıl yardımcı olabilirim?";
             appendMessage("assistant", welcomeMsg);
         } else {
             history.forEach(msg => {
@@ -795,7 +795,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        if (!silent) showLoading(`${week}. Hafta siber çalışma programı çıkarılıyor...`);
+        if (!silent) showLoading(`${week}. Hafta ders programı çıkarılıyor...`);
         try {
             const response = await fetch("/api/schedule-tasks", {
                 method: "POST",
@@ -859,7 +859,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!schedule || !schedule.HaftalikPlan || schedule.HaftalikPlan.length === 0) {
             elements.schedulerEmpty.style.display = "flex";
             elements.schedulerContent.style.display = "none";
-            elements.schedulerStepTitle.textContent = "Lütfen Yol Haritası sayfasından planlamak istediğiniz siber güvenlik adımını seçin.";
+            elements.schedulerStepTitle.textContent = "Lütfen Yol Haritası sayfasından planlamak istediğiniz adımı seçin.";
             return;
         }
 
@@ -997,7 +997,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- SUGGESTIONS SECTION ---
     async function loadSuggestions(step) {
-        showLoading("Siber kaynaklar çekiliyor...");
+        showLoading("Arama motorundan kaynaklar çekiliyor...");
         try {
             const response = await fetch(`/api/suggestions?topic=${encodeURIComponent(step)}&career_goal=${encodeURIComponent(state.career_goal)}`);
             if (response.ok) {
@@ -1018,7 +1018,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!suggestionsList || suggestionsList.length === 0) {
             elements.suggestionsEmpty.style.display = "flex";
             elements.suggestionsContent.style.display = "none";
-            elements.suggestionsStepTitle.textContent = "Yol haritasındaki adımlara yönelik teknik doküman, video ve lablar.";
+            elements.suggestionsStepTitle.textContent = "Yol haritasındaki adımlara yönelik makale, video ve projeler.";
             return;
         }
 
@@ -1038,7 +1038,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (sType.includes("video")) {
                 iconClass = "fa-circle-play";
                 typeColorClass = "video";
-            } else if (sType.includes("proje") || sType.includes("lab")) {
+            } else if (sType.includes("proje")) {
                 iconClass = "fa-code-branch";
                 typeColorClass = "dokümantasyon";
             }
@@ -1075,8 +1075,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Reset Console
             elements.simulationConsoleLogArea.innerHTML = `
-                <div class="console-line system-line">> HUD Kapsülü başlatılmaya hazır. Hedef rol yüklendi: ${state.career_goal.toUpperCase()}</div>
-                <div class="console-line system-line">> Simülasyonu başlat butonuna basarak 15 saniyelik siber operasyon simülasyonunu başlatın...</div>
+                <div class="console-line system-line">> Kapsül başlatılmaya hazır. Hedef meslek yüklendi: ${state.career_goal.toUpperCase()}</div>
+                <div class="console-line system-line">> Simülasyonu başlat butonuna basarak 15 saniyelik deneyimi başlatın...</div>
             `;
 
             // Reset Progress circle
@@ -1093,8 +1093,8 @@ document.addEventListener("DOMContentLoaded", () => {
         elements.btnStartSimulation.style.display = "none";
         
         elements.simulationConsoleLogArea.innerHTML = `
-            <div class="console-line system-line">> Siber kapsül ısıtılıyor...</div>
-            <div class="console-line system-line">> Ajanlar verileri OpenAI sunucularından indiriyor...</div>
+            <div class="console-line system-line">> Simülasyon kapsülü ısıtılıyor...</div>
+            <div class="console-line system-line">> OpenAI ile bağlantı kuruluyor ve meslek verileri indiriliyor...</div>
         `;
 
         try {
@@ -1109,30 +1109,30 @@ document.addEventListener("DOMContentLoaded", () => {
                 runSimulationTimer(data.Logs || []);
             } else {
                 elements.simulationConsoleLogArea.innerHTML += `
-                    <div class="console-line system-line" style="color:var(--accent);">> Sunucu hatası. Yerel simülasyon modu başlatılıyor...</div>
+                    <div class="console-line system-line" style="color:var(--accent);">> Sunucu hatası. Simülasyon yerel modda başlatılıyor...</div>
                 `;
                 runSimulationTimer([
                     "09:00 - Operasyon planlaması yapıldı.",
                     "11:00 - İlk kritik testler gerçekleştirildi.",
                     "13:30 - Sistem performansı optimize edildi.",
                     "15:30 - Ekip içi entegrasyonlar tamamlandı.",
-                    "17:00 - Günlük siber çıktılar onaylandı."
+                    "17:00 - Günlük mesleki çıktılar onaylandı."
                 ]);
             }
         } catch (error) {
             console.error("Simulation logs failed to load", error);
             runSimulationTimer([
-                "09:00 - Çevrimdışı siber simülasyon başlatıldı.",
-                "12:00 - Temel güvenlik analizleri yapıldı.",
-                "15:00 - Zafiyet taramaları tamamlandı.",
-                "18:00 - Günlük operasyon başarıyla sonlandırıldı."
+                "09:00 - Çevrimdışı simülasyon başlatıldı.",
+                "12:00 - Temel görevler icra edildi.",
+                "15:00 - Ara kontroller yapıldı.",
+                "18:00 - Günlük hedeflere ulaşıldı."
             ]);
         }
     };
 
     function runSimulationTimer(logs) {
         elements.simulationConsoleLogArea.innerHTML = `
-            <div class="console-line system-line">> BAĞLANTI BAŞARILI. SİBER OPERASYON BAŞLATILDI!</div>
+            <div class="console-line system-line">> BAĞLANTI BAŞARILI. SİMÜLASYON BAŞLATILDI!</div>
         `;
 
         const r = 80;
@@ -1186,8 +1186,8 @@ document.addEventListener("DOMContentLoaded", () => {
         elements.simulationProgressRing.style.strokeDashoffset = "0";
 
         elements.simulationConsoleLogArea.innerHTML += `
-            <div class="console-line success-line">> SİBER OPERASYON BAŞARIYLA TAMAMLANDI!</div>
-            <div class="console-line system-line">> HUD Kapsülü devreden çıkarılıyor...</div>
+            <div class="console-line success-line">> SİMÜLASYON BAŞARIYLA TAMAMLANDI!</div>
+            <div class="console-line system-line">> Kapsül devreden çıkarılıyor...</div>
         `;
         elements.simulationConsoleLogArea.scrollTop = elements.simulationConsoleLogArea.scrollHeight;
 
@@ -1195,10 +1195,10 @@ document.addEventListener("DOMContentLoaded", () => {
             elements.simulationDashboardArea.style.display = "none";
             elements.simulationRewardBadgeCard.style.display = "flex";
 
-            elements.simulationRewardTitle.textContent = `Geleceğin ${state.career_goal} Uzmanı!`;
+            elements.simulationRewardTitle.textContent = `Tebrikler!`;
             elements.simulationRewardDesc.innerHTML = `
-                Seçtiğiniz <strong>${state.career_goal}</strong> rolünü 15 saniye boyunca siber konsolda başarıyla simüle ettiniz.<br>
-                Zafiyetler kapatıldı, ağ güvenli! Bugün hedefine ulaşmak için ilk adımını atmaya ne dersin?
+                Seçtiğiniz <strong>${state.career_goal}</strong> rolünü 15 saniye boyunca başarıyla simüle ettiniz.<br>
+                Bugün hedefinize ulaşmak için 1 adım daha yaklaştınız!
             `;
         }, 1500);
     }
