@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CyberShield AI - Siber Güvenlik Kariyer Planlayıcı</title>
+    <title>PathFinder AI - Siber Güvenlik Kariyer Planlayıcı</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,8 +18,8 @@
         <!-- Sidebar Navigation -->
         <aside class="sidebar">
             <div class="logo-container">
-                <div class="logo-icon" style="color: #06d6a0;"><i class="fa-solid fa-shield-halved"></i></div>
-                <div class="logo-text">CyberShield<span>AI</span></div>
+                <div class="logo-icon"><i class="fa-solid fa-compass-drafting"></i></div>
+                <div class="logo-text">PathFinder<span>AI</span></div>
             </div>
             
             <nav class="nav-menu">
@@ -172,7 +172,7 @@
                                     <div class="expert-icon"><i class="fa-solid fa-cloud-shield"></i></div>
                                     <div class="expert-details">
                                         <h4>Bulut Güvenliği</h4>
-                                        <p>AWS, Azure, Kubernetes ve güvenli bulut mimarisi.</p>
+                                        <p>AWS, Azure, Google Cloud platformlarında güvenli mimari kurulumu ve konteyner (Docker/Kubernetes) güvenliği.</p>
                                     </div>
                                 </div>
                             </div>
@@ -352,7 +352,7 @@
                 <section id="page-simulation" class="app-page">
                     <div class="section-card">
                         <div class="card-header">
-                            <div class="header-icon" style="color:#06d6a0;"><i class="fa-solid fa-terminal"></i></div>
+                            <div class="header-icon" style="color:var(--secondary);"><i class="fa-solid fa-terminal"></i></div>
                             <div>
                                 <h3>Siber Güvenlik Operasyon Simülatörü</h3>
                                 <p>Gelecekteki siber operasyonlarda kendini gör. Seçtiğin uzmanlık rolünün 5 kritik adımını 15 saniyelik fütüristik HUD ekranında deneyimle.</p>
@@ -369,24 +369,24 @@
                                 <div class="progress-ring-wrapper">
                                     <svg class="progress-ring" width="180" height="180">
                                         <circle class="progress-ring-bg" stroke="rgba(255, 255, 255, 0.05)" stroke-width="8" fill="transparent" r="80" cx="90" cy="90"/>
-                                        <circle class="progress-ring-circle" id="simulation-progress-ring" stroke="#06d6a0" stroke-width="8" fill="transparent" r="80" cx="90" cy="90"/>
+                                        <circle class="progress-ring-circle" id="simulation-progress-ring" stroke="var(--secondary)" stroke-width="8" fill="transparent" r="80" cx="90" cy="90"/>
                                     </svg>
-                                    <div class="timer-display" id="simulation-timer-text" style="color:#06d6a0; text-shadow:0 0 10px rgba(6, 214, 160, 0.3);">15s</div>
+                                    <div class="timer-display" id="simulation-timer-text">15s</div>
                                 </div>
-                                <button id="btn-start-simulation" class="btn-primary" style="width:100%; justify-content:center; margin-top:1.5rem; background:#06d6a0; color:#0d1b2a;">
+                                <button id="btn-start-simulation" class="btn-primary" style="width:100%; justify-content:center; margin-top:1.5rem;">
                                     <i class="fa-solid fa-play"></i>
                                     <span>Simülasyonu Başlat</span>
                                 </button>
                             </div>
 
-                            <div class="simulation-console-panel" style="border: 1px solid rgba(6, 214, 160, 0.25);">
+                            <div class="simulation-console-panel">
                                 <div class="console-header">
                                     <span class="dot red"></span>
                                     <span class="dot yellow"></span>
                                     <span class="dot green"></span>
-                                    <span class="console-title">CyberShield SOC HUD Console v3.1</span>
+                                    <span class="console-title">PathFinder HUD Console v2.0</span>
                                 </div>
-                                <div class="console-body" id="simulation-console-log-area" style="color: #06d6a0;">
+                                <div class="console-body" id="simulation-console-log-area">
                                     <div class="console-line system-line">> SOC Kapsülü başlatılmaya hazır. Hedef rol yüklendi.</div>
                                     <div class="console-line system-line">> Simülasyonu başlat butonuna basarak 15 saniyelik siber operasyon deneyimini başlatın...</div>
                                 </div>
@@ -394,13 +394,13 @@
                         </div>
 
                         <!-- Success Badge Reward Card -->
-                        <div class="badge-reward-card" id="simulation-reward-badge-card" style="display: none; border: 1px solid rgba(6, 214, 160, 0.25);">
-                            <div class="badge-glow-effect" style="background: radial-gradient(circle, rgba(6, 214, 160, 0.08) 0%, transparent 60%);"></div>
-                            <div class="badge-icon" style="color: #06d6a0; text-shadow: 0 0 20px rgba(6, 214, 160, 0.4);"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div class="badge-reward-card" id="simulation-reward-badge-card" style="display: none;">
+                            <div class="badge-glow-effect"></div>
+                            <div class="badge-icon"><i class="fa-solid fa-award"></i></div>
                             <h3 id="simulation-reward-title">Siber Operasyon Başarılı!</h3>
                             <p id="simulation-reward-desc">Siber Güvenlik Uzmanı simülasyonunu başarıyla tamamladınız. Bugün hedefinize 1 adım daha yaklaştınız!</p>
                             <div class="badge-footer" style="margin-top: 1.5rem;">
-                                <button class="btn-primary" id="btn-simulation-go-roadmap" style="margin: 0 auto; background:#06d6a0; color:#0d1b2a;">Çalışmaya Başla (Yol Haritası)</button>
+                                <button class="btn-primary" id="btn-simulation-go-roadmap" style="margin: 0 auto;">Çalışmaya Başla (Yol Haritası)</button>
                             </div>
                         </div>
                     </div>
@@ -443,8 +443,8 @@
     <!-- Loading Overlay -->
     <div class="loading-overlay" id="loading-spinner">
         <div class="spinner-container">
-            <div class="spinner" style="border-top: 3px solid #06d6a0;"></div>
-            <p id="loading-text" style="color: #06d6a0;">Siber Ajanlar Analiz Yapıyor...</p>
+            <div class="spinner"></div>
+            <p id="loading-text">Siber Ajanlar Analiz Yapıyor...</p>
         </div>
     </div>
 
