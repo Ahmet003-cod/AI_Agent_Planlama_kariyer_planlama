@@ -1,0 +1,22 @@
+# Virtual Environment
+venv/
+ENV/
+env/
+.venv/
+
+# Environment Variables (Sensitive)
+.env
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# User Memory Data
+data/
+*.json
+
+# IDE Settings
+.vscode/
+.idea/
+.gemini/

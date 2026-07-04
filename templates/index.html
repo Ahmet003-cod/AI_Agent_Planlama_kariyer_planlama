@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Kariyer & Yol Haritası Planlayıcı</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo-container">
+                <div class="logo-icon"><i class="fa-solid fa-compass-drafting"></i></div>
+                <div class="logo-text">PathFinder<span>AI</span></div>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="#dashboard" class="nav-item active" id="nav-dashboard">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Panel</span>
+                </a>
+                <a href="#chat" class="nav-item" id="nav-chat">
+                    <i class="fa-solid fa-comments"></i>
+                    <span>Kariyer Uzmanı</span>
+                </a>
+                <a href="#roadmap" class="nav-item" id="nav-roadmap">
+                    <i class="fa-solid fa-route"></i>
+                    <span>Yol Haritası</span>
+                </a>
+                <a href="#scheduler" class="nav-item disabled-nav" id="nav-scheduler">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span>Haftalık Plan</span>
+                </a>
+                <a href="#suggestions" class="nav-item" id="nav-suggestions">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <span>Kaynak Önerileri</span>
+                </a>
+                <a href="#simulation" class="nav-item" id="nav-simulation">
+                    <i class="fa-solid fa-terminal"></i>
+                    <span>Simülasyon</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-badge">
+                    <i class="fa-solid fa-user-astronaut"></i>
+                    <div class="user-info">
+                        <p class="user-name">Gezgin</p>
+                        <p class="user-role" id="display-goal">Kariyer Seçilmedi</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="main-header">
+                <div class="header-left">
+                    <h1 id="page-title">Kariyer Planlama Paneli</h1>
+                    <p class="subtitle" id="page-subtitle">Yapay zeka destekli kariyer yolculuğunuzu başlatın.</p>
+                </div>
+                <div class="header-right">
+                    <div class="api-status-badge">
+                        <span class="status-dot"></span>
+                        <span id="api-status-text">Bağlanıyor...</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Pages Wrapper -->
+            <div class="content-body">
+                
+                <!-- 1. DASHBOARD PAGE -->
+                <section id="page-dashboard" class="app-page active">
+                    <div class="welcome-card">
+                        <div class="welcome-text">
+                            <h2>Geleceğini Şekillendir</h2>
+                            <p>Ulaşmak istediğin meslek hedefini gir, senin için özelleştirilmiş adım adım bir yol haritası ve çalışma takvimi hazırlayalım.</p>
+                        </div>
+                        <div class="welcome-icon">
+                            <i class="fa-solid fa-meteor"></i>
+                        </div>
+                    </div>
+
+                    <div class="goal-input-card">
+                        <h3>Hedef Mesleğin Nedir?</h3>
+                        <p>Örn: Full Stack Developer, AI Engineer, Siber Güvenlik Uzmanı...</p>
+                        <div class="input-group">
+                            <input type="text" id="career-input" placeholder="Hedeflediğiniz kariyer alanını yazın..." autocomplete="off">
+                            <button id="btn-generate-roadmap" class="btn-primary">
+                                <span>Planı Oluştur</span>
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            </button>
+                        </div>
+                        <div class="quick-tags">
+                            <span>Popüler:</span>
+                            <button class="quick-tag-btn">Frontend Developer</button>
+                            <button class="quick-tag-btn">Backend Developer</button>
+                            <button class="quick-tag-btn">AI Engineer</button>
+                            <button class="quick-tag-btn">Siber Güvenlik Uzmanı</button>
+                        </div>
+                    </div>
+
+                    <!-- Statistics / Progress -->
+                    <div class="dashboard-stats" style="display: none;" id="dashboard-progress-section">
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fa-solid fa-percent"></i></div>
+                            <div class="stat-info">
+                                <h4>Genel İlerleme</h4>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar" id="progress-bar-fill" style="width: 0%;"></div>
+                                </div>
+                                <span class="stat-val" id="progress-percentage">0%</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fa-solid fa-list-check"></i></div>
+                            <div class="stat-info">
+                                <h4>Tamamlanan Adımlar</h4>
+                                <span class="stat-val" id="progress-steps-count">0 / 0</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 2. CHAT PAGE -->
+                <section id="page-chat" class="app-page">
+                    <div class="chat-layout">
+                        <!-- Left Panel: Expert Selection -->
+                        <div class="expert-sidebar">
+                            <h3>Uzman Alanı Seçin</h3>
+                            <p class="expert-desc">Soru sormak istediğiniz kariyer alanını seçin.</p>
+                            <div class="expert-list">
+                                <div class="expert-card active" data-domain="yazilim">
+                                    <div class="expert-icon"><i class="fa-solid fa-code"></i></div>
+                                    <div class="expert-details">
+                                        <h4>Yazılım Uzmanı</h4>
+                                        <p>Kodlama, web/mobil geliştirme ve teknolojiler.</p>
+                                    </div>
+                                </div>
+                                <div class="expert-card" data-domain="veri-yapayzeka">
+                                    <div class="expert-icon"><i class="fa-solid fa-brain"></i></div>
+                                    <div class="expert-details">
+                                        <h4>AI & Veri Uzmanı</h4>
+                                        <p>Yapay zeka, makine öğrenmesi ve veri analizi.</p>
+                                    </div>
+                                </div>
+                                <div class="expert-card" data-domain="tasarim">
+                                    <div class="expert-icon"><i class="fa-solid fa-palette"></i></div>
+                                    <div class="expert-details">
+                                        <h4>Tasarım (UX/UI) Uzmanı</h4>
+                                        <p>Figma, portfolyo ve kullanıcı deneyimi.</p>
+                                    </div>
+                                </div>
+                                <div class="expert-card" data-domain="pazarlama">
+                                    <div class="expert-icon"><i class="fa-solid fa-chart-simple"></i></div>
+                                    <div class="expert-details">
+                                        <h4>Pazarlama Uzmanı</h4>
+                                        <p>SEO, dijital reklamlar ve marka stratejileri.</p>
+                                    </div>
+                                </div>
+                                <div class="expert-card" data-domain="girisimcilik-urun">
+                                    <div class="expert-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                                    <div class="expert-details">
+                                        <h4>Girişim & Ürün Uzmanı</h4>
+                                        <p>Ürün yönetimi, MVP ve iş geliştirme.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Panel: Conversation -->
+                        <div class="chat-container-box">
+                            <div class="chat-header-bar">
+                                <div class="active-expert-info">
+                                    <span class="active-expert-dot"></span>
+                                    <h4 id="active-expert-title">Yazılım Uzmanı</h4>
+                                </div>
+                                <button id="btn-clear-chat" class="btn-text-only">
+                                    <i class="fa-solid fa-trash-can"></i> Sohbeti Temizle
+                                </button>
+                            </div>
+                            
+                            <!-- Messages Area -->
+                            <div class="chat-messages" id="chat-messages-area">
+                                <div class="message assistant animate-message">
+                                    Merhaba! Ben Yazılım Geliştirme Kariyer Uzmanınızım. Kodlama dilleri, frontend/backend geliştirme, kariyer hedefleri ve mülakatlar hakkında bana dilediğini sorabilirsin.
+                                </div>
+                            </div>
+                            
+                            <!-- Input Area -->
+                            <div class="chat-input-area">
+                                <input type="text" id="chat-user-input" placeholder="Kariyer uzmanına bir soru sorun..." autocomplete="off">
+                                <button id="btn-send-message" class="btn-primary">
+                                    <span>Gönder</span>
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3. ROADMAP PAGE -->
+                <section id="page-roadmap" class="app-page">
+                    <div class="roadmap-layout">
+                        <!-- Left Panel: Interactive Visual Flow -->
+                        <div class="roadmap-main-card">
+                            <div class="card-header">
+                                <div class="header-icon"><i class="fa-solid fa-route"></i></div>
+                                <div>
+                                    <h3>İnteraktif Yol Haritası</h3>
+                                    <p>Adım düğümlerine tıklayarak yan panelde detaylı görevleri, video linklerini ve kaynakları görüntüleyin.</p>
+                                </div>
+                            </div>
+                            
+                            <div id="roadmap-empty" class="empty-state">
+                                <i class="fa-solid fa-compass fa-spin"></i>
+                                <p>Henüz bir yol haritası oluşturulmadı. Panel sayfasına giderek bir kariyer hedefi girin.</p>
+                            </div>
+                            
+                            <!-- Visual Nodes Container -->
+                            <div class="roadmap-visual-flow" id="roadmap-visual-flow-area" style="display: none;">
+                                <!-- Connected nodes will be generated dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- Right Panel: Step Detail Panel -->
+                        <div class="roadmap-details-card" id="roadmap-details-card-area" style="display: none;">
+                            <div class="details-header">
+                                <div class="details-step-badge" id="detail-step-badge">ADIM 1</div>
+                                <h3 id="detail-step-title">Yükleniyor...</h3>
+                                <div class="step-progress-wrapper">
+                                    <span id="detail-step-progress-text">Tamamlanma: 0/0</span>
+                                    <div class="progress-bar-container">
+                                        <div class="progress-bar" id="detail-step-progress-bar" style="width: 0%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="details-content-body">
+                                <div class="detail-section">
+                                    <h4><i class="fa-solid fa-circle-info"></i> Adım Açıklaması</h4>
+                                    <p id="detail-step-description">-</p>
+                                </div>
+                                
+                                <div class="detail-section">
+                                    <h4><i class="fa-solid fa-list-check"></i> Yapılması Gereken Görevler</h4>
+                                    <div class="detail-tasks-checklist" id="detail-step-tasks-list">
+                                        <!-- Checkboxes will be rendered here -->
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-section">
+                                    <h4><i class="fa-solid fa-play"></i> Önerilen Video Eğitimler</h4>
+                                    <div class="detail-resources-list" id="detail-step-videos-list">
+                                        <!-- Video resource cards will be rendered here -->
+                                    </div>
+                                </div>
+
+                                <div class="detail-section">
+                                    <h4><i class="fa-solid fa-book-open"></i> Dokümantasyon & Kaynaklar</h4>
+                                    <div class="detail-resources-list" id="detail-step-docs-list">
+                                        <!-- Documentation resource cards will be rendered here -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="details-footer">
+                                <button id="btn-detail-get-schedule" class="btn-primary" style="width: 100%; justify-content: center;">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                    <span>Haftalık Program Çıkar</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 4. SCHEDULER PAGE -->
+                <section id="page-scheduler" class="app-page">
+                    <div class="section-card">
+                        <div class="card-header">
+                            <div class="header-icon"><i class="fa-solid fa-calendar-days"></i></div>
+                            <div>
+                                <h3>Haftalık Çalışma Programı</h3>
+                                <p id="scheduler-step-title">Lütfen Yol Haritası sayfasından planlamak istediğiniz adımı seçin.</p>
+                            </div>
+                        </div>
+
+                        <div id="scheduler-empty" class="empty-state">
+                            <i class="fa-solid fa-clock"></i>
+                            <p>Planlanmış bir adım bulunmuyor. Yol haritasında bir adıma tıklayarak haftalık planı çıkarabilirsiniz.</p>
+                        </div>
+
+                        <div class="scheduler-container" id="scheduler-content" style="display: none;">
+                            <!-- Scheduler Controls Bar -->
+                            <div class="scheduler-controls-bar">
+                                <div class="week-selector-wrapper">
+                                    <span class="lbl-week">Hafta Seçimi:</span>
+                                    <div class="week-tabs" id="scheduler-week-tabs">
+                                        <!-- Dynamic week tab buttons -->
+                                    </div>
+                                    <button id="btn-plan-next-week" class="btn-outline-plus">
+                                        <i class="fa-solid fa-plus"></i> Yeni Hafta Planla
+                                    </button>
+                                </div>
+                                <div class="edit-mode-wrapper">
+                                    <button id="btn-toggle-edit-mode" class="btn-outline-edit">
+                                        <i class="fa-solid fa-pen-to-square"></i> Kendim Düzenlemek İstiyorum
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="weekly-planner" id="weekly-planner-grid">
+                                <!-- Days will be generated here -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5. SUGGESTIONS PAGE -->
+                <section id="page-suggestions" class="app-page">
+                    <div class="section-card">
+                        <div class="card-header">
+                            <div class="header-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                            <div>
+                                <h3>Canlı Kaynak Önerileri</h3>
+                                <p id="suggestions-step-title">Seçilen adım başlığına göre internet arama motorundan eş zamanlı derlenen kaynaklar.</p>
+                            </div>
+                        </div>
+
+                        <div id="suggestions-empty" class="empty-state">
+                            <i class="fa-solid fa-book-open"></i>
+                            <p>Öneri bulunamadı. Yol haritasındaki adımlardan birini seçerek kaynakları görüntüleyin.</p>
+                        </div>
+
+                        <div class="suggestions-grid" id="suggestions-content" style="display: none;">
+                            <!-- Suggestions will be generated here -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 6. SIMULATION PAGE -->
+                <section id="page-simulation" class="app-page">
+                    <div class="section-card">
+                        <div class="card-header">
+                            <div class="header-icon"><i class="fa-solid fa-terminal"></i></div>
+                            <div>
+                                <h3>Kariyer Simülasyon Kapsülü</h3>
+                                <p>Gelecekteki kendinle tanışmaya hazır mısın? Seçtiğin mesleğin kritik bir gününü 15 saniye boyunca interaktif simülatörde deneyimle.</p>
+                            </div>
+                        </div>
+
+                        <div id="simulation-empty" class="empty-state">
+                            <i class="fa-solid fa-user-astronaut"></i>
+                            <p>Simülasyona başlamak için önce Panel sayfasından bir kariyer hedefi belirlemelisiniz.</p>
+                        </div>
+
+                        <div class="simulation-dashboard" id="simulation-dashboard-area" style="display: none;">
+                            <div class="simulation-visual-pod">
+                                <div class="progress-ring-wrapper">
+                                    <svg class="progress-ring" width="180" height="180">
+                                        <circle class="progress-ring-bg" stroke="rgba(255, 255, 255, 0.05)" stroke-width="8" fill="transparent" r="80" cx="90" cy="90"/>
+                                        <circle class="progress-ring-circle" id="simulation-progress-ring" stroke="var(--secondary)" stroke-width="8" fill="transparent" r="80" cx="90" cy="90"/>
+                                    </svg>
+                                    <div class="timer-display" id="simulation-timer-text">15s</div>
+                                </div>
+                                <button id="btn-start-simulation" class="btn-primary" style="width:100%; justify-content:center; margin-top:1.5rem;">
+                                    <i class="fa-solid fa-play"></i>
+                                    <span>Simülasyonu Başlat</span>
+                                </button>
+                            </div>
+
+                            <div class="simulation-console-panel">
+                                <div class="console-header">
+                                    <span class="dot red"></span>
+                                    <span class="dot yellow"></span>
+                                    <span class="dot green"></span>
+                                    <span class="console-title">PathFinder HUD Console v2.0</span>
+                                </div>
+                                <div class="console-body" id="simulation-console-log-area">
+                                    <div class="console-line system-line">> Kapsül başlatılmaya hazır. Hedef meslek yüklendi.</div>
+                                    <div class="console-line system-line">> Simülasyonu başlat butonuna basarak 15 saniyelik deneyimi başlatın...</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Success Badge Reward Card -->
+                        <div class="badge-reward-card" id="simulation-reward-badge-card" style="display: none;">
+                            <div class="badge-glow-effect"></div>
+                            <div class="badge-icon"><i class="fa-solid fa-award"></i></div>
+                            <h3 id="simulation-reward-title">Tebrikler!</h3>
+                            <p id="simulation-reward-desc">Siber Güvenlik Uzmanı simülasyonunu başarıyla tamamladınız. Bugün hedefinize 1 adım daha yaklaştınız!</p>
+                            <div class="badge-footer" style="margin-top: 1.5rem;">
+                                <button class="btn-primary" id="btn-simulation-go-roadmap" style="margin: 0 auto;">Çalışmaya Başla (Yol Haritası)</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Alarm / Reminder Modal -->
+    <div class="modal-overlay" id="reminder-modal" style="display: none;">
+        <div class="modal-card animate-modal">
+            <div class="modal-header">
+                <h3>Hatırlatıcı & Alarm Kur</h3>
+                <button class="btn-close-modal" id="btn-close-reminder-modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <p id="reminder-task-text" class="reminder-task-preview">-</p>
+                <div class="form-group">
+                    <label for="reminder-datetime">Hatırlatma Zamanı:</label>
+                    <input type="datetime-local" id="reminder-datetime" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="reminder-message">Özel Not (Opsiyonel):</label>
+                    <input type="text" id="reminder-message" class="form-control" placeholder="Örn: Bu konuyu çalışmayı unutma!">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-cancel-reminder" class="btn-secondary-text">İptal</button>
+                <button id="btn-save-reminder" class="btn-primary">Alarmı Kur</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications Area -->
+    <div class="toast-container" id="toast-notifications-area">
+        <!-- Toast notifications will slide-in here dynamically -->
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-spinner">
+        <div class="spinner-container">
+            <div class="spinner"></div>
+            <p id="loading-text">Yapay Zekanız Plan Yapıyor...</p>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
